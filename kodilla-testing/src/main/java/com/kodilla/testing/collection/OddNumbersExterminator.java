@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OddNumbersExterminator {
-    List<Integer> ListOfNumbers;
+    private List<Integer> ListOfNumbers;
 
     public OddNumbersExterminator() {
         ListOfNumbers = new ArrayList<>();
