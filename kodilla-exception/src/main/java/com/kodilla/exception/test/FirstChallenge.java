@@ -16,15 +16,14 @@ public class FirstChallenge {
      */
     public static void main(String[] args) {
         FirstChallenge firstChallenge = new FirstChallenge();
-        double result = 0.0;
 
         try {
-            result = firstChallenge.divide(3, 0);
+            double result = firstChallenge.divide(3, 0);
+            System.out.println("Result: " + result);
         } catch (ArithmeticException e) {
             System.out.println("Something went wrong! Error: " + e);
         } finally {
             System.out.println("Try again!!!");
         }
-        System.out.println("Result: " + result);
     }
 }
