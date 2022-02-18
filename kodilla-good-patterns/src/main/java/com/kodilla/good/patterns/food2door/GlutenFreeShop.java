@@ -1,0 +1,32 @@
+package com.kodilla.good.patterns.food2door;
+
+public class GlutenFreeShop implements Provider{
+
+    private String productProvider;
+    private String productName;
+
+    public GlutenFreeShop(String productProvider, String productName) {
+        this.productProvider = "GlutenFreeShop";
+        this.productName = productName;
+    }
+
+    @Override
+    public String getProductProvider() {
+        return productProvider;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void process(final OrderRequest orderRequest) {
+        OrderService orderService = null;
+        InformationService informationService = new EmailService();
+        boolean isOrdered = orderService.order(orderRequest.getUser(),
+                orderRequest.getProductProvider(), orderRequest.getProductName(),
+                orderRequest.getProductQuantity());
+        if (isOrdered) {
+            informationService.inform(orderRequest.getUser());
+        }
+    }
+}
