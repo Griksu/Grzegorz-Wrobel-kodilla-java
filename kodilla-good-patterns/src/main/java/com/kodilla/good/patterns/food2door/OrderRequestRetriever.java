@@ -8,7 +8,7 @@ public class OrderRequestRetriever {
 
         String productProvider = "GlutenFreeShop";
 
-        Product product = new Product("Bread gluten free");
+        Product product = new Product("bread gluten free");
 
         int productQuantity = 2;
 

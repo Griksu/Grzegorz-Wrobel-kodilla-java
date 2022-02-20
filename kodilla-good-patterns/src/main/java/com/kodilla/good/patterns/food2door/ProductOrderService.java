@@ -4,11 +4,11 @@ public class ProductOrderService implements OrderService{
 
 
     @Override
-    public boolean order(User user, String provider, Product product,
+    public boolean order(User user, String productProvider, Product product,
                          int productQuantity) {
-        System.out.println("Client: " + user.getUserName() + user.getUserSurname() +
-                " ordered product: " + product.getProductName() + " in quantity: " +
-                productQuantity);
+        System.out.println("Client: " + user.getUserName() + " " + user.getUserSurname() +
+                ", ordered product: " + product.getProductName() + ", quantity: " +
+                productQuantity + ", from: " + productProvider);
         return true;
     }
 }

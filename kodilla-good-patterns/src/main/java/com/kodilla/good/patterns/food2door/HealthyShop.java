@@ -10,7 +10,6 @@ public class HealthyShop implements Provider {
         this.productName = productName;
     }
 
-    @Override
     public String getProductProvider() {
         return productProvider;
     }
@@ -19,14 +18,19 @@ public class HealthyShop implements Provider {
         return productName;
     }
 
-    public void process(final OrderRequest orderRequest) {
-        OrderService orderService = null;
-        InformationService informationService = new SMSService();
+    @Override
+    public void processOrderRequest(OrderRequest orderRequest) {
+        OrderService orderService = new ProductOrderService();
+        InformationService informationService = new EmailService();
+
         boolean isOrdered = orderService.order(orderRequest.getUser(),
                 orderRequest.getProductProvider(), orderRequest.getProductName(),
                 orderRequest.getProductQuantity());
         if (isOrdered) {
             informationService.inform(orderRequest.getUser());
+        } else {
+            System.out.println("Something went wrong. \n" +
+                    "Please, make your order again");
         }
     }
 }

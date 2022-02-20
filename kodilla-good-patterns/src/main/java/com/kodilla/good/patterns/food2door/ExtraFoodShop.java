@@ -10,7 +10,6 @@ public class ExtraFoodShop implements Provider{
         this.productName = productName;
     }
 
-    @Override
     public String getProductProvider() {
         return productProvider;
     }
@@ -19,5 +18,16 @@ public class ExtraFoodShop implements Provider{
         return productName;
     }
 
+    @Override
+    public void processOrderRequest(OrderRequest orderRequest) {
+        OrderService orderService = new ProductOrderService();
+        InformationService informationService = new EmailService();
 
+        boolean isOrdered = orderService.order(orderRequest.getUser(),
+                orderRequest.getProductProvider(), orderRequest.getProductName(),
+                orderRequest.getProductQuantity());
+        if (isOrdered) {
+            informationService.inform(orderRequest.getUser());
+        }
+    }
 }

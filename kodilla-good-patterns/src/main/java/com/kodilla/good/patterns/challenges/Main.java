@@ -19,7 +19,8 @@ public class Main {
         OrderRequestRetriever orderRequestRetriever = new OrderRequestRetriever();
         OrderRequest orderRequest = orderRequestRetriever.retrieve();
 
-        OrderProcessor orderProcessor = new OrderProcessor(new EmailService(), new ProductOrderService(),
+        OrderProcessor orderProcessor = new OrderProcessor(new EmailService(),
+                new ProductOrderService(),
                 new ProductOrderRepository());
         orderProcessor.process(orderRequest);
     }
