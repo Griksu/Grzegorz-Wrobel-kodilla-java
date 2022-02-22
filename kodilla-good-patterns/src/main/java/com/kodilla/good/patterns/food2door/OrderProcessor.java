@@ -15,6 +15,17 @@ public class OrderProcessor {
     }
 
     public void processOrderRequest(final OrderRequest orderRequest) {
+        Provider provider = null;
+        if (orderRequest.getProductProvider().equals("ExtraFoodShop")) {
+            provider = new ExtraFoodShop(orderRequest.getProductProvider(), orderRequest.getProductName());
+        } else if (orderRequest.getProductProvider().equals("GlutenFreeShop")) {
+            provider = new GlutenFreeShop(orderRequest.getProductProvider(), orderRequest.getProductName());
+        } else if (orderRequest.getProductProvider().equals("HealthyShop")) {
+            provider = new HealthyShop(orderRequest.getProductProvider(), orderRequest.getProductName());
+        }
+
+        provider.processOrderRequest(orderRequest);
+
         boolean isOrdered = orderService.order(orderRequest.getUser(),
                 orderRequest.getProductProvider(), orderRequest.getProductName(),
                 orderRequest.getProductQuantity());
@@ -23,6 +34,8 @@ public class OrderProcessor {
             orderRepository.createOrder(orderRequest.getUser(),
                     orderRequest.getProductProvider(), orderRequest.getProductName(),
                     orderRequest.getProductQuantity());
+        } else {
+            System.out.println("Your order is wrong. CHeck it again");
         }
     }
 }

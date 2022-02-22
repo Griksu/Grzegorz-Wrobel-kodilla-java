@@ -6,7 +6,7 @@ public class OrderRequestRetriever {
         User user = new User("John", "Smith",
                 "j.smith84@mail.com", "987-456-321");
 
-        String productProvider = "GlutenFreeShop";
+        String productProvider = "ExtraFoodShop";
 
         Product product = new Product("bread gluten free");
 
