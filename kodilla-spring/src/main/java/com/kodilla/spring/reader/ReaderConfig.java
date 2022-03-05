@@ -1,6 +1,5 @@
 package com.kodilla.spring.reader;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -9,23 +8,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ReaderConfig {
 
-    @Autowired
-    @Qualifier("book1")
-    Book book;
-
     @Bean
-    public Reader getReader() {
-        return new Reader(book);
+    public Reader getReader(@Qualifier("book1") Book bookOne) {
+        return new Reader(bookOne);
     }
 
     @Bean(name = "book1")
-    public Book getBookOne() {
+    public Book bookOne() {
         return new Book("The book number one");
     }
 
     @Bean(name = "book2")
     @Conditional(IfDayIsOddCondition.class)
-    public Book getBookTwo() {
+    public Book bookTwo() {
         return new Book("The book number two");
     }
 }
