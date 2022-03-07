@@ -26,20 +26,20 @@ public class LibraryTestSuite {
         library.getBooks().add(book4);
         library.getBooks().add(book5);
 
-            //Making a shallow clone of object library
-        Library cloneLibrary = null;
+            //Making a shallow copy of object library
+        Library clonedLibrary = null;
         try {
-            cloneLibrary = library.shallowCopy();
-            cloneLibrary.setName("Book collection number 2");
+            clonedLibrary = library.shallowCopy();
+            clonedLibrary.setName("Book collection number 2");
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
 
-            //Making a deep clone of object library
-        Library deepCloneLibrary = null;
+            //Making a deep copy of object library
+        Library deepClonedLibrary = null;
         try {
-            deepCloneLibrary = library.deepCopy();
-            deepCloneLibrary.setName("Book collection number 3");
+            deepClonedLibrary = library.deepCopy();
+            deepClonedLibrary.setName("Book collection number 3");
         } catch (CloneNotSupportedException e) {
             System.out.println(e);
         }
@@ -49,12 +49,12 @@ public class LibraryTestSuite {
 
         //Then
         System.out.println(library);
-        System.out.println(cloneLibrary);
-        System.out.println(deepCloneLibrary);
+        System.out.println(clonedLibrary);
+        System.out.println(deepClonedLibrary);
         assertEquals(4, library.getBooks().size());
-        assertEquals(4, cloneLibrary.getBooks().size());
-        assertEquals(5, deepCloneLibrary.getBooks().size());
-        assertEquals(cloneLibrary.getBooks(), library.getBooks());
-        assertNotEquals(deepCloneLibrary.getBooks(), library.getBooks());
+        assertEquals(4, clonedLibrary.getBooks().size());
+        assertEquals(5, deepClonedLibrary.getBooks().size());
+        assertEquals(clonedLibrary.getBooks(), library.getBooks());
+        assertNotEquals(deepClonedLibrary.getBooks(), library.getBooks());
     }
 }
