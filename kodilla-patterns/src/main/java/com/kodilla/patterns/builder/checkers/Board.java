@@ -22,9 +22,9 @@ public class Board {
 
     public String toString() {
         String result = "";
-        for (int y = MIN_INDEX; y < MAX_INDEX; y++) {
+        for (int y = MIN_INDEX; y <= MAX_INDEX; y++) {
             result += "|";
-            for (int x = MIN_INDEX; x < MAX_INDEX; x++) {
+            for (int x = MIN_INDEX; x <= MAX_INDEX; x++) {
                 if (board[x][y] == null) {
                     result += "  ";
                 } else {

@@ -10,7 +10,7 @@ public class BigmacTestSuite {
     void testBigmacBuilder() {
         //Given
         Bigmac bigmac = new Bigmac.BigmacBuilder()
-                .bun("Sesame seed")
+                .bun(Bun.SESAME)
                 .burgers(2)
                 .ingredients("Lettuce")
                 .ingredients("Cheese")
@@ -24,7 +24,7 @@ public class BigmacTestSuite {
         int howManyIngredients = bigmac.getIngredients().size();
         double howManyBurgers = bigmac.getBurgers();
         boolean isOnionInBigmac = bigmac.getIngredients().contains("Onion");
-        boolean isBunWithSesame = bigmac.getBun().contains("Sesame");
+        boolean isBunWithSesame = bigmac.getBun()==Bun.SESAME;
 
         //Then
         assertEquals(5, howManyIngredients);

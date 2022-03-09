@@ -5,18 +5,18 @@ import java.util.List;
 
 public final class Bigmac {
 
-    private final String bun;
+    private final Bun bun;
     private final double burgers;
     private final String sauce;
     private List<String> ingredients = new ArrayList<>();
 
     public static class BigmacBuilder {
-        private String bun;
+        private Bun bun;
         private double burgers;
         private String sauce;
         private List<String> ingredients = new ArrayList<>();
 
-        public BigmacBuilder bun(String bun) {
+        public BigmacBuilder bun(Bun bun) {
             this.bun = bun;
             return this;
         }
@@ -41,7 +41,7 @@ public final class Bigmac {
         }
     }
 
-    private Bigmac(final String bun, final double burgers, final String sauce,
+    private Bigmac(final Bun bun, final double burgers, final String sauce,
                    List<String> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
@@ -49,7 +49,7 @@ public final class Bigmac {
         this.ingredients = new ArrayList<>(ingredients);
     }
 
-    public String getBun() {
+    public Bun getBun() {
         return bun;
     }
 
