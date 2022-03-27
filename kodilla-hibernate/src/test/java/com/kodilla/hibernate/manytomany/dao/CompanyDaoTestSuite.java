@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -13,6 +15,8 @@ public class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -44,17 +48,31 @@ public class CompanyDaoTestSuite {
         int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
+        employeeDao.save(johnSmith);
+        int johnSmithId = johnSmith.getId();
+        employeeDao.save(stephanieClarckson);
+        int stephanieClarcksonId = stephanieClarckson.getId();
+        employeeDao.save(lindaKovalsky);
+        int lindaKovalskyId = lindaKovalsky.getId();
+        List<Employee> employeeLastnameSpecifies = employeeDao.retrieveEmployeeWithLastname("Kovalsky");
+        List<Company> companyNameSpecifiedWithString =
+                companyDao.retrieveCompanyNameWithStringOfChars("Dat%");
 
         //Then
         assertNotEquals(0, softwareMachineId);
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
+        assertEquals(1,employeeLastnameSpecifies.size());
+        assertEquals(1,companyNameSpecifiedWithString.size());
 
-        //ClearUp
+        //CleanUp
         try {
             companyDao.deleteById(softwareMachineId);
             companyDao.deleteById(dataMaestersId);
             companyDao.deleteById(greyMatterId);
+            employeeDao.deleteById(johnSmithId);
+            employeeDao.deleteById(softwareMachineId);
+            employeeDao.deleteById(lindaKovalskyId);
         } catch (Exception e) {
             //do nothing
         }
