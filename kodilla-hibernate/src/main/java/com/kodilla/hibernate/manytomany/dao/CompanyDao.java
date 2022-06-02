@@ -14,4 +14,7 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
 
     @Query(nativeQuery = true)
     List<Company> retrieveCompanyNameWithStringOfChars(@Param("C_NAME") String name);
+
+    @Query
+    List<Company> retrieveCompanyWithStringOfCharsOfName(@Param("COMPANY_NAME") String name);
 }
